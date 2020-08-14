@@ -1,0 +1,17 @@
+asgiref==3.2.3
+autopep8==1.4.4
+braintree==4.0.0
+certifi==2019.11.28
+chardet==3.0.4
+Django==3.0.2
+idna==2.9
+mysqlclient==1.4.6
+Pillow==7.0.0
+pycodestyle==2.5.0
+pycryptodome==3.9.7
+PyMySQL==0.9.3
+pytz==2019.3
+requests==2.23.0
+sqlparse==0.3.0
+stripe==2.43.0
+urllib3==1.25.8
