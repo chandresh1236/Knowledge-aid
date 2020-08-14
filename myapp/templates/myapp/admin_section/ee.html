@@ -1,0 +1,81 @@
+<form method="POST" enctype="multipart/form-data" action="{% url 'updcourse' %}">
+      {% csrf_token %}
+		<div class="box_general padding_bottom">
+			<div class="header_box version_2">
+				<h2><i class="fa fa-file"></i>Basic info</h2>
+			</div>
+        <div class="row">
+				<div class="col-md-6">
+					<div class="form-group">
+						<label>Course title</label>
+						<input type="text" class="form-control" placeholder="Course title" name="course_name" value="{{uid.course_name}}">
+					</div>
+        </div>
+				<div class="col-md-6">
+					<div class="form-group">
+						<label>Course discription</label>
+						<input type="text" class="form-control" placeholder="Course title" name="course_discription" value="{{uid.course_discription}}">
+					</div>
+				</div>
+        </div>
+        <div class="row">
+				<div class="col-md-6">
+					<div class="form-group">
+						<label>Course price</label>
+						<input type="text" class="form-control" placeholder="Course category" name="course_price" value="{{uid.course_price}}">
+					</div>
+				</div>
+				<div class="col-md-6">
+					<div class="form-group">
+						<label>Course duration:-</label>
+						<input type="text" class="form-control" placeholder="Course start" name="course_duration" value="{{uid.course_duration}}">
+					</div>
+				</div>
+        </div>
+        <div class="row">
+				<div class="col-md-6">
+					<div class="form-group">
+						<label>Course specification</label>
+						<input type="text" class="form-control" placeholder="course specification" name="course_specification" value="{{uid.course_specification}}">
+					</div>
+				</div>
+			<!-- /row-->
+				<div class="col-md-6">
+					<div class="form-group">
+						<label>course rating </label>
+						<input type="number" class="form-control" placeholder="Course rating" name="course_rating" value="{{uid.course_rating}}">
+					</div>
+				</div>
+        </div>
+        <div class="row">
+        <div class="col-md-6">
+					<div class="form-group">
+						<label>Upload_pic</label>
+						<input type="file" class="form-control" placeholder="Your pic" name="course_pic" value="{{uid.course_pic}}" >
+					</div>
+				</div>
+      <div class="col-md-6">
+        <div class="form-group">
+						<label>Upload_video</label>
+						<input type="file" class="form-control" placeholder="Your pic" name="course_video" value="{{uid.course_video}}">
+					</div>
+				</div>
+        </div>
+        <div class="row">
+            
+            <div class="col-md-6">
+					<div class="form-group">
+						<label>course rating </label>
+						<input type="hidden" class="form-control" placeholder="Course id" name="course_id" value="{{uid.id}}">
+					</div>
+				   </div>
+            <div class="col-md-6">
+            <div class="form-group">
+						<label>save</label>
+						<input type="submit" class="form-button" placeholder="Your pic" value="save" >
+					 </div>
+				</div>
+
+			
+    </form>
+    

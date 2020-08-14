@@ -1,0 +1,101 @@
+<html>
+{% load static %}
+<head>
+<link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">   
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+<link rel="stylesheet" 
+
+href="http://cdn.datatables.net/1.10.2/css/jquery.dataTables.min.css"></style>
+<script type="text/javascript" 
+
+src="http://cdn.datatables.net/1.10.2/js/jquery.dataTables.min.js"></script>
+<script type="text/javascript" 
+
+src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+
+<style>
+img {
+  border: 1px solid #ddd; /* Gray border */
+  border-radius: 4px;  /* Rounded border */
+  padding: 5px; /* Some padding */
+  width: 150px; /* Set a small width */
+}
+body, html {
+  height: 100%;
+}
+.bg {
+  /* The image used */
+  background-image: url("https://mdbootstrap.com/img/Photos/Horizontal/Nature/full page/img(20).jpg");
+
+  /* Full height */
+  height: 100%;
+
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.s
+{
+  border:none;
+  left:0px;
+}
+/* Add a hover effect (blue shadow) */
+img:hover {
+  box-shadow: 0 0 2px 1px rgba(0, 140, 186, 0.5);
+}
+</style>
+</head>
+<body>
+
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+			   <a href="{% url 'index' %}"><img src="{% static 'myapp\img\logo.png' %}" class="s" width="270" height="50" data-retina="true" alt=""></a>
+    </div>
+    <ul class="nav navbar-nav">
+      <li class="active"><a href="#">Home</a></li>
+      <li><a href="#">Login</a></li>
+      <li><a href="#">Register</a></li>
+    </ul>
+    <ul class="nav navbar-nav navbar-right">
+      <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+      <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+    </ul>
+  </div>
+</nav>
+<div class="table-responsive">
+<table id="myTable" class="display table" width="100%" > 
+        <thead>  
+          <tr>  
+            <th>Name</th>  
+            <th>image</th>  
+            <th>price</th>  
+            <th>ratings</th>
+            <th>links</th>  
+          </tr>  
+        </thead>  
+        <tbody>  
+        {% for i,i1 in context%}
+          <tr>  
+            <td>{{i.name}}</td>  
+            <td>
+             <a target="_blank" href="{{i1.image}}">
+                <img src="{{i1.image}}"></img>
+             </a>
+            </td>  
+            <td>{{i.price}}</td>  
+            <td>{{i.ratings}}</td>
+            <td><a href="{{i1.link}}">{{i1.link}}</a></td>  
+          </tr>
+        {% endfor %}
+          <tbody>  
+      </table>
+      </div>
+</body> 
+<script>
+$(document).ready(function(){
+    $('#myTable').dataTable();
+});
+</script>
+</html>

@@ -1,0 +1,279 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Udema a modern educational site template">
+    <meta name="author" content="Ansonika">
+    <title>UDEMA | Modern Educational site template</title>
+
+    <!-- Favicons-->
+    <link rel="shortcut icon" href="{%static 'myapp\img\favicon.ico' %}" type="image/x-icon">
+    <link rel="apple-touch-icon" type="image/x-icon" href="{%static 'myapp\img\apple-touch-icon-57x57-precomposed.png' %}">
+    <link rel="apple-touch-icon" type="image/x-icon" sizes="72x72" href="{%static 'myapp\img\apple-touch-icon-72x72-precomposed.png' %}">
+    <link rel="apple-touch-icon" type="image/x-icon" sizes="114x114" href="{%static 'myapp\img\apple-touch-icon-114x114-precomposed.png' %}">
+    <link rel="apple-touch-icon" type="image/x-icon" sizes="144x144" href="{%static 'myapp\img\apple-touch-icon-144x144-precomposed.png'%}">
+    <!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+<!-- Popper JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+
+<!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0/js/bootstrap.min.js"></script>
+
+    <!-- GOOGLE WEB FONT -->
+    <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800" rel="stylesheet">
+
+    <!-- BASE CSS -->
+    <link href="{% static 'myapp\css\bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'myapp\css\style.css' %}" rel="stylesheet">
+	<link href="{% static 'myapp\css\vendors.css' %}" rel="stylesheet">
+	<link href="{% static 'myapp\css\icon_fonts\css\all_icons.min.css' %}" rel="stylesheet">
+
+    <!-- YOUR CUSTOM CSS -->
+    <link href="{% static 'myapp\css\custom.css' %}" rel="stylesheet">
+    <style>
+	 #login aside, #register aside
+	 {
+       left:525px;
+	   top:38px;
+	   height:150px;
+	 }
+	 #role
+	 {
+		 width:350px;
+		 height:35px;
+	 }
+
+	#login form-control {
+    font-size: 14px;
+    font-size: .875rem;
+    border-radius: 3px;
+    border: 1px solid #ededed;
+     }
+
+	#login aside, #register aside {
+    width: 450px;
+    padding: 36px 60px 60px;
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    overflow-y: auto;
+    background-color: #fff;
+    min-height: 100vh;
+    }
+   
+	</style>
+</head>
+
+<body id="register_bg">
+	
+	<div id="preloader">
+		<div data-loader="circle-side"></div>
+	</div>
+	<!-- End Preload -->
+	
+	<div id="login">
+		<aside id="logina" class="log">
+			<figure>
+				<a href="{% static 'myapp\index' %}"><img src="{%static 'myapp\img\logo.png' %}" width="149" height="42" data-retina="true" alt=""></a>
+			</figure>
+			<form autocomplete="off" method="Post" onsubmit="return validation();" action="{% url 'register' %}">
+			   
+			    {% csrf_token %}
+			<!--	<div class="form-group">
+              <select class="input_field" id="role" name="role">
+			 <option>student</option>
+    	     <option>teacher</option>
+             </select>
+            </div>-->
+
+			<div class="form-group">
+                            <select name="role" id="role">
+                                <option class="hidden" selected disabled>Role</option>
+                                <option>student</option>
+                                <option>teacher</option>
+                            </select>
+             </div>
+			
+				<div class="form-group">
+                    
+					<span class="input">
+					<input class="input_field" type="text" id="user" name="firstname" onblur="return validation();">
+						<label class="input_label">
+						<span class="input__label-content">Firstname</span>
+					   </label>
+					</span>
+
+					<span class="input">
+					<input class="input_field" type="text" id="usera" name="lastname" onblur="return validation();">
+						<label class="input_label">
+						<span class="input__label-content">Last Name</span>
+					</label>
+					</span>
+
+					<span class="input">
+					<input class="input_field" type="email" id="email" name="email" onblur="return validation();">
+						<label class="input_label">
+						<span class="input__label-content">Your Email</span>
+					   </label>
+					</span>
+
+					<span class="input">
+					
+					<input class="input_field" type="password" name="password" id="pass" onblur="return validation();">
+						<label class="input_label">
+						<span class="input__label-content">Your password</span>
+					</label>
+					</span>
+                    
+					<div class="alert alert-danger">
+                     <strong id="error"></strong> Indicates a neutral informative change or action.
+                    </div><br>
+				
+					<span class="input">
+					<input class="input_field" type="password" id="cnfpass" name="cnfpassword" onblur="return validation();">
+						<label class="input_label">
+						<span class="input__label-content">Confirm password</span>
+					</label>
+					</span>
+					
+					<span class="input">
+					{% if s_msg %}:
+					       <div class="alert alert-success">
+                        <strong>Success {{s_msg}}!</strong> Indicates a successful or positive action.
+                          </div>
+					{% elif e_msg %}:
+				
+					        <div class="alert alert-danger">
+                             <strong>{{e_msg}}!</strong> 
+                          </div>
+
+				    {% endif %}
+				
+					</span>
+			
+					<div id="pass-info" class="clearfix"></div>
+			
+
+				<input type="submit" class="btn_1 rounded full-width add_top_60" value="register" onsubmit="return validation();">
+				<div class="text-center add_top_10">Already have an acccount? <strong><a href="{% url 'login' %}">Sign In</a></strong></div><br>
+			    <span class="input">
+					    <center>©2020 Knowledge-Aid</center>
+					</span>
+				</div>
+
+			</form>
+			
+		</aside>
+	</div>
+	<!-- /login -->
+	
+	<!-- COMMON SCRIPTS -->
+    <script src="{% static 'myapp\js\jquery-2.2.4.min.js' %}"></script>
+    <script src="{% static 'myapp\js\common_scripts.js' %}%"></script>
+    <script src="{% static 'myapp\js\main.js' %}"></script>
+	<script src="{% static 'myapp\assets\validate.js' %}"></script>
+	
+	<!-- SPECIFIC SCRIPTS -->
+	<script src="{% static 'myapp\js\pw_strenght.js' %}"></script>
+
+
+
+<script type="text/javascript">
+	function validation() {
+
+		var fname=document.getElementById('user').value;
+        if(fname=="")
+        {
+          document.getElementById('error').innerHTML="*Please write your firstname";;
+		  document.getElementById('user').style.borderColor='red';		  							
+        }
+		else
+		{
+			document.getElementById('user').style.borderColor='green';
+		}
+
+		var lname=document.getElementById('usera').value;
+        if(lname=="")
+        {
+          document.getElementById('error').innerHTML="*Please write your Lastname";;
+		   document.getElementById('usera').style.borderColor='red';				  							
+        }
+		else
+		{
+			document.getElementById('usera').style.borderColor='green';
+		}
+
+
+		/*Email*/
+		var emailadd=document.getElementById('email').value;
+		if(emailadd=="")
+        {
+          document.getElementById('error').innerHTML="*Please write your email";						
+        }
+		else
+		{
+			document.getElementById('email').style.borderColor='green';
+		}
+
+
+		var pattern=/^[A-Za-z0-9_.-]{3,}@[A-Za-z]{3,}[.]{1}[A-Za-z.]{2,6}$/;
+		if(pattern.test(email))
+		{
+			document.getElementById('email').style.borderColor='green';
+			document.getElementById('error').innerHTML="*Please valid email";
+		}		
+		else
+		{
+			document.getElementById('email').style.borderColor='red';	
+		} 
+		/*password*/
+		var pattern=/^[A-Za-z .]{3,20}$/;
+		if(pattern.test(user))
+		{
+			document.getElementById('user').style.borderColor='green';
+			document.getElementById('error').innerHTML="*Please ";
+		}
+		else
+		{
+			document.getElementById('user').style.borderColor='red';	
+		}
+
+		var pass=document.getElementById('pass').value;
+		if(pass.length<8)
+		{
+			document.getElementById('error').innerHTML="*Please valid password";
+			return false;
+		}
+		else if(pass.search(/[0-9]/)==-1)
+		{
+			document.getElementById('error').innerHTML="*Please valid atleast one number";
+			return false;
+		}
+		else if(pass.search(/[a-z]/)==-1)
+		{
+			document.getElementById('error').innerHTML="*Please atleast one small letter";
+			return false;
+		}
+		else if(pass.search(/[A-Z]/)==-1)
+		{
+			document.getElementById('error').innerHTML="*Please atleast one captial letter";
+			return false;
+		}
+		else if(pass.search(/[@\!\$\^]/)==-1)
+		{
+			document.getElementById('error').innerHTML="*Please atleast one special letter";
+			return false;
+		}
+		    
+		
+	}
+</script>
+
+</body>
+
+</html>
